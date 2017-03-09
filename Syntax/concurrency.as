@@ -6,6 +6,24 @@ def start_coroutine_and_thread()
     # keyword.
     go count_to 3
 
+    # Concurrent Groups
+
+    # Groups contain many green threads
+    go count_to 3 in some_group
+
+    # Green threads can be represented as objects and stopped and paused and otherwise 
+    # messed with.
+    
+    go count_to 3 as that_counting_thread
+
+    go count_to 3 in some_group as another_counting_thread
+
+    shutdown that_counting_thread
+
+    shutdown some_group
+
+    go count_to 3 in counting_group, some_group, other_group
+
     # For full scale threads, I think the launch keyword is very helpful, becuase it has
     # a connotaion that implies the increased overhead required by a thread.
     launch count_to 3
@@ -24,7 +42,7 @@ def do_thing_sync
 end
 
 def use_async_stuff
-  temp_value = do_thing_async # or "async do_thing_sync
+  temp_value = do_thing_async # or async do_thing_sync
   # do other computation
   await temp_value
 end
