@@ -23,10 +23,6 @@ def start_coroutine_and_thread()
     shutdown some_group
 
     go count_to 3 in counting_group, some_group, other_group
-
-    # For full scale threads, I think the launch keyword is very helpful, becuase it has
-    # a connotaion that implies the increased overhead required by a thread.
-    launch count_to 3
 end
 
 # Async Await
